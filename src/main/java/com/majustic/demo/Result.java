@@ -10,7 +10,7 @@ package com.majustic.demo;
 class Result
 {	
 	public int positionX;
-	public  int positionY;
+	public int positionY;
 	public  Character direction;
 
 }
