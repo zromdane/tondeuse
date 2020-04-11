@@ -1,0 +1,13 @@
+{
+	"gazon" : {
+	"infGauche" : 5,
+	"supDroite" : 5
+	},
+	"tondeuse" : {
+	"positionX" : 1,
+	"positionY" : 2,
+	"direction" : "N"
+	},
+
+	"_commande" : "GAGAGAGAA"
+}

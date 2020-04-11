@@ -43,17 +43,21 @@ public class Etat
 
 	public Gazon gazon;
 	public Tondeuse tondeuse;
-	public String commande;
+	public String _commande;
 	//ici on va executer la commande sur la tondeuse
 	public Result executerCommande(Etat e) {
 		
-
-        	logger.info("Etat - infG : "+ e.gazon.infGauche +" supG :" +  e.gazon.supDroite);
+		logger.info("Etat - commande : "+ e._commande);
+        	//logger.info("Etat - infG : "+ e.gazon.infGauche +" supG :" +  e.gazon.supDroite);
        	 	
 		//System.out.println("infG "+ e.gazon.infGauche + " supG " +  e.gazon.supDroite);
 		//System.out.println("e.tondeuse.direction : "+ e.tondeuse.direction);
 	
-		return new Result();
+		Result r=new Result();
+		r.direction='N';
+		r.positionX=4;
+		r.positionY=3;
+		return r;
 	};
 
 	
