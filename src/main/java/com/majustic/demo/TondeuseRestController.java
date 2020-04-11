@@ -9,7 +9,7 @@ import org.springframework.core.io.Resource;
 
 @RestController
 @CrossOrigin
-public class TendeuseRestService {
+public class TondeuseRestController{
 
 	
 	@RequestMapping(value="/command")
@@ -17,9 +17,12 @@ public class TendeuseRestService {
 		//System.out.println("infG "+ e.gazon.infGauche + " supG " +  e.gazon.supDroite);
 		//System.out.println("e.tondeuse.direction : "+ e.tondeuse.direction);
 		
-		System.out.println("e.gazon.infGauche : "+ e.gazon.infGauche+ 
-					" tondeuse "+e.tondeuse.positionX+" "+e._commande);
-		return e.executerCommande(e);
+		System.out.println("gazon.infGauche:"+ e.gazon.infGauche+ " gazon.supDroite: "+ e.gazon.supDroite+ 
+				   " tondeuseX:"+e.tondeuse.positionX+" "+  " tondeuseY:"+e.tondeuse.positionY + " cmd:"+ e._commande);
+		
+				
+		e.executerCommande();
+		return e.getResult();
 	}
 
 
@@ -33,5 +36,3 @@ public class TendeuseRestService {
 
 
 }
-
-

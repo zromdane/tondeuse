@@ -11,7 +11,6 @@ class Result
 {	
 	public int positionX;
 	public int positionY;
-	public  Character direction;
-
+	public Direction direction;
 }
 
