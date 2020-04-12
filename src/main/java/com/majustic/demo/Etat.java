@@ -99,8 +99,8 @@ public class Etat
 	 else if (exec == 'A')
 	     avancer();
 	 //log here x,y and direction !!!
-	 logger.info("Etat - : " + "x"    + tondeuse.positionX+" y:"   + tondeuse.positionY +
-			           " dir:"+ tondeuse.direction+" hit: "+ hit);	 
+	 logger.info("Etat -" + " x:"    + tondeuse.positionX +" y:"   + tondeuse.positionY +
+			        " dir:"  + tondeuse.direction +" hit:" + hit);	 
 	 }     
 	};
 	
@@ -114,7 +114,7 @@ public class Etat
 	};
 
 	
-	public  Resource loadLog() {
+	public  static Resource loadLog() {
 	    try {
 	      Path root = Paths.get("logs");
 	      Path file = root.resolve("tondeuse.log");
@@ -129,6 +129,17 @@ public class Etat
 	      throw new RuntimeException("Error: " + e.getMessage());
 	    }
 	  }
+	public  static void deleteLog() {
+            try {
+	      Path root = Paths.get("logs");
+	      Path file = root.resolve("tondeuse.log");
 
+	      Files.delete(file);
+	    }
+	     catch(IOException e) 
+            { 
+	     System.out.println("erreur IO ..."); 
+	    }
+	}
 
 }

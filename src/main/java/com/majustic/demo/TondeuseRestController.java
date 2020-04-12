@@ -32,6 +32,12 @@ public class TondeuseRestController{
     		return ResponseEntity.ok()
         	       .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
   	}
+	
+	@DeleteMapping("/deletelog")
+  	public void deleteLog() {
+    		Etat.deleteLog();
+    	
+  	}
 
 
 

@@ -1,7 +1,7 @@
 
 import { Component, Input, ElementRef,OnInit } from '@angular/core';
 //import { FormBuilder, FormGroup } from '@angular/forms';
-import {HttpClientModule,HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders,HttpResponse} from '@angular/common/http';
 import { Command } from './command';
 import { Etat } from './etat';
 import datax  from  './data.json';
@@ -30,10 +30,16 @@ template: `
 	Direction finale : <input type="text" name="directionFinale" id="directionFinale" [(ngModel)]="directionFinale"/><br/>     
        
 	 <button type="submit">Envoyer la commande</button>
-	 <button type="button" (click)="getLog()">Afficher le Log</button>
+	 </form>
 
-      
-    </form>
+ <button type="button" (click)="getLog()">Afficher le Log</button>
+ <button type="button" (click)="deleteLog()">Supprimer le Log</button>   
+ <br/>
+ <label for="log">Log:</label>
+  <br/>
+ <textarea id="log" name="log" rows="20" cols="55" [(ngModel)]="txtlog">  </textarea>
+
+
 
 `,
 styles: []
@@ -43,6 +49,7 @@ export class AppComponent implements OnInit {
  	Xfinal:number;
 	Yfinal :number;
 	directionFinale:string;
+	txtlog:string="Cliquer sur Afficher le Log";
 
 	ngOnInit() { console.log(datax) ;}
 	constructor(private http: HttpClient) {}
@@ -58,14 +65,31 @@ export class AppComponent implements OnInit {
 				 },
 		      (err) => {console.log(err);}
 		    );	
-  	}
 	
+  	}
+	deleteLog(){
+		let url="http://127.0.0.1:8080/deletelog";
+		this.http.delete(url).subscribe(
+ 			() =>this.txtlog="",
+		      	(err) => {console.log(err); console.log("c");}
+		    );	
+	
+	}
+
 	getLog(){
+		
+		const httpOptions2 = {
+		  headers: new HttpHeaders({
+		    'Accept': 'text/plain,*/*',
+		    'Access-Control-Allow-Headers': 'Content-Type',
+		    'Content-Type': 'text/plain',
+		  })
+		};
 		let url:string;
 		url="http://127.0.0.1:8080/log";
-		this.http.get<any>(url).subscribe(
-		      (res) => {console.log(res); },
-		      (err) => {console.log(err);}
+		this.http.get(url,{ responseType: 'text' }).subscribe(
+		      (res) => {console.log(res); this.txtlog=res;},
+		      (err) => {console.log(err); this.txtlog="le fichier est vide ou introuvable"}
 		    );	
 	}
 }
